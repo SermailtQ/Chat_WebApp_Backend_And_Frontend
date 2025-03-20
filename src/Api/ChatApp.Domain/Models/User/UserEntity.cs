@@ -1,6 +1,4 @@
-﻿using ChatApp.Domain.Models.Messages;
-
-namespace ChatApp.Domain.Models;
+﻿namespace ChatApp.Domain.Models;
 
 public class UserEntity : BaseEntity
 {
@@ -14,7 +12,7 @@ public class UserEntity : BaseEntity
     public DateTime RegisteredAt { get; set; } = DateTime.UtcNow;
     public DateTime LastOnline { get; set; } = DateTime.UtcNow;
 
-    public virtual required List<RoleClaimsEntity> RoleClaims { get; set; }
+    public virtual required List<RoleEntity> Roles { get; set; }
     public virtual required List<MessageReactionsEntity> MessageReactions { get; set; }
     public virtual required List<ParticipantsEntity> Participants { get; set; }
     public virtual required List<MessageEntity> Messages { get; set; }

@@ -1,10 +1,10 @@
 ﻿namespace ChatApp.Domain.Models;
 
-public class ParticipantsEntity : BaseEntity
+public class ParticipantsEntity
 {
-    public required int ConversationId { get; set; }
-    public required int UserId { get; set; }
-    public int ConversationRoleId { get; set; }
+    public required Guid ConversationId { get; set; }
+    public required Guid UserId { get; set; }
+    public required Guid ConversationRoleId { get; set; }
 
     public required DateTime JoinedAt { get; set; } = DateTime.UtcNow;
 

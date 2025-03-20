@@ -1,15 +1,14 @@
-﻿namespace ChatApp.Domain.Models.Messages
+﻿namespace ChatApp.Domain.Models;
+
+public class MessageReactionsEntity : BaseEntity
 {
-    public class MessageReactionsEntity : BaseEntity
-    {
-        public required int MessageId { get; set; }
-        public required int SenderId { get; set; }
-        public required string Reaction { get; set; }
+    public required Guid MessageId { get; set; }
+    public required Guid SenderId { get; set; }
+    public required string Reaction { get; set; }
 
-        public virtual required MessageEntity Message { get; set; }
+    public virtual required MessageEntity Message { get; set; }
 
-        public virtual required UserEntity Sender { get; set; }
+    public virtual required UserEntity Sender { get; set; }
 
 
-    }
 }

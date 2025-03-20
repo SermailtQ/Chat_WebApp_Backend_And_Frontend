@@ -1,13 +1,13 @@
-﻿namespace ChatApp.Domain.Models.Messages;
+﻿namespace ChatApp.Domain.Models;
 
 public class MessageEntity : BaseEntity
 {
-    public required int ConversationId { get; set; }
-    public required int SenderId { get; set; }
+    public required Guid ConversationId { get; set; }
+    public required Guid SenderId { get; set; }
     public required string Message { get; set; }
     public required string Status { get; set; } // TODO: Rethink
     public DateTime SendAt { get; set; } = DateTime.UtcNow;
-    public int? ReplyId { get; set; }
+    public Guid? ReplyId { get; set; }
 
     public virtual required ConversationEntity Conversation { get; set; }
     public virtual required UserEntity Sender { get; set; }
