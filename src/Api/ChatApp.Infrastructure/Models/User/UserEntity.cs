@@ -10,7 +10,7 @@ public class UserEntity : BaseEntity
     public required string Password { get; set; }
     public required DateTime Birthdate { get; set; }
     public DateTime RegisteredAt { get; set; } = DateTime.UtcNow;
-    public DateTime LastOnline { get; set; } = DateTime.UtcNow;
+    public DateTime LastLogin { get; set; } = DateTime.UtcNow;
 
     public virtual required List<RoleEntity> Roles { get; set; }
     public virtual List<MessageReactionsEntity>? MessageReactions { get; set; }

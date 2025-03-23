@@ -22,7 +22,7 @@ namespace ChatApp.Application.Service
 
         public bool Verify(string password, string PasswordHash)
         {
-            string[] parts = password.Split('-');
+            string[] parts = PasswordHash.Split('-');
             byte[] hash = Convert.FromHexString(parts[0]);
             byte[] salt = Convert.FromHexString(parts[1]);
 

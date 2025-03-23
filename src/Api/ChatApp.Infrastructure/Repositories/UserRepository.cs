@@ -26,12 +26,19 @@ public class UserRepository : IUserRepository
 
     public async Task<UserEntity> GetByEmailAsync(string email)
     {
-        return await _context.Users.SingleOrDefaultAsync(u => u.Email == email)
+        return await _context.Users.FirstOrDefaultAsync(u => u.Email == email)
                      ?? throw new InvalidOperationException($"User with email {email} not found.");
     }
 
-    public Task UpdateUserAsync(UserEntity entity)
+    public async Task UpdateLastLoginAsync(Guid Id)
     {
-        throw new NotImplementedException();
+        var entity = await _context.Users.FirstOrDefaultAsync(u => u.Id == Id);
+
+        if (entity == null)
+            throw new InvalidOperationException("User not found");
+
+        entity.LastLogin = entity.LastLogin;
+        
+        _context.Entry(entity).Property(u => u.LastLogin).IsModified = true;
     }
 }
