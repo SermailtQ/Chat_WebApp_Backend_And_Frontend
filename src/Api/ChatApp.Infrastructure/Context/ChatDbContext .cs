@@ -19,6 +19,9 @@ public class ChatDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+
+        SeedRoles(builder);
+
         // Participants
         builder.Entity<ParticipantsEntity>()
             .HasKey(p => new { p.ConversationId, p.UserId });
@@ -86,4 +89,20 @@ public class ChatDbContext : DbContext
 
         base.OnModelCreating(builder);
     }
+
+    public void SeedRoles(ModelBuilder builder)
+    {
+        builder.Entity<RoleEntity>().HasData(
+            new RoleEntity
+            {
+                Id = new Guid("1947bbb7-ac8e-47dc-ba7d-9cb7aec80674"),
+                Name = "Admin"
+            },
+            new RoleEntity
+            {
+                Id = new Guid("bbce769f-31a1-4d55-8075-ef06db38aec1"),
+                Name = "User"
+            });
+    }
+
 }

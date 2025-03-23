@@ -1,21 +1,29 @@
+using ChatApp.Application.Features.User.Commands;
 using ChatApp.Infrastructure.Context;
+using ChatApp.Infrastructure.Repositories.Interfaces;
+using ChatApp.Infrastructure.Repositories;
+using ChatApp.Infrastructure.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add DbContext
 builder.Services.AddDbContext<ChatDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("MainDbConnection")));
 
-// Add services to the container.
+builder.Services.AddMediatR(configuration => {
+    configuration.RegisterServicesFromAssemblies(typeof(RegisterUserCommandHandler).Assembly);
+    });
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

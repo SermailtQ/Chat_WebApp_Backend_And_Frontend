@@ -9,14 +9,19 @@ public class UserRepository : IUserRepository
 
     public UserRepository(ChatDbContext context) => _context = context;
 
-    public Task AddUserAsync(UserEntity entity)
+    public async Task AddUserAsync(UserEntity entity)
     {
-        throw new NotImplementedException();
+        await _context.Users.AddAsync(entity);
     }
 
     public Task DeactivateUserAsync(string email)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<bool> DoesEmailExist(string email)
+    {
+       return await _context.Users.AnyAsync(u => u.Email == email);
     }
 
     public async Task<UserEntity> GetByEmailAsync(string email)
