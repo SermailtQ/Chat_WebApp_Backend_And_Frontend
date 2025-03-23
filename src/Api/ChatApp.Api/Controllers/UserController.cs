@@ -1,4 +1,5 @@
 ﻿using ChatApp.Application.Features.User.Commands;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,10 @@ namespace ChatApp.Api.Controllers
             catch (InvalidOperationException ex)
             {
                 return Conflict(new { message = ex.Message });
+            }
+            catch (ValidationException ex)
+            {
+                return Conflict(new { errors = ex.Errors.Select(e => e.ErrorMessage) });
             }
             catch (Exception ex)
             {

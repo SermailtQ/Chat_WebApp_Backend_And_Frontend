@@ -2,6 +2,8 @@
 using ChatApp.Application.Service;
 using Microsoft.Extensions.DependencyInjection;
 using ChatApp.Application.Features.User.Commands;
+using FluentValidation;
+using ChatApp.Application.Validators;
 
 namespace ChatApp.Application;
 
@@ -12,6 +14,7 @@ public static class ApplicationServicesRegistration
         services.AddMediatR(config =>
             config.RegisterServicesFromAssemblies(typeof(RegisterUserCommandHandler).Assembly));
 
+        services.AddValidatorsFromAssemblyContaining<RegisterUserDtoValidator>();
         services.AddTransient<IPasswordService, PasswordService>();
 
         return services;
