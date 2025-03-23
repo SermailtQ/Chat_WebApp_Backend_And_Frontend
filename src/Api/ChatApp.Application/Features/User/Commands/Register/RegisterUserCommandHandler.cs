@@ -1,4 +1,5 @@
-﻿using ChatApp.Infrastructure.Models;
+﻿using ChatApp.Application.Service.Interfaces;
+using ChatApp.Infrastructure.Models;
 using ChatApp.Infrastructure.Repositories;
 using ChatApp.Infrastructure.Repositories.Interfaces;
 using ChatApp.Infrastructure.UnitOfWork;
@@ -6,7 +7,8 @@ using MediatR;
 
 namespace ChatApp.Application.Features.User.Commands;
 
-public class RegisterUserCommandHandler(IUserRepository _userRepository, IRoleRepository _roleRepository, IUnitOfWork _unitOfWork) 
+public class RegisterUserCommandHandler
+    (IUserRepository _userRepository, IRoleRepository _roleRepository, IUnitOfWork _unitOfWork, IPasswordService _passwordService) 
     : IRequestHandler<RegisterUserCommand>
 {
     public async Task Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -18,6 +20,8 @@ public class RegisterUserCommandHandler(IUserRepository _userRepository, IRoleRe
 
         var userRole = await _roleRepository.GetUserRoleAsync();
 
+        string passwordHash = _passwordService.Hash(entity.Password);
+
         var userToInsert = new UserEntity()
         {
             Username = entity.Email,
@@ -26,7 +30,7 @@ public class RegisterUserCommandHandler(IUserRepository _userRepository, IRoleRe
             Adress = entity.Adress,
             Firstname = entity.Firstname,
             Lastname = entity.Lastname,
-            Password = entity.Password, // TODO: Add password encryption
+            Password = passwordHash,
             Roles = new List<RoleEntity>() { userRole }
         };
 

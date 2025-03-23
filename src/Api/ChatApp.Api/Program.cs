@@ -4,6 +4,8 @@ using ChatApp.Infrastructure.Repositories.Interfaces;
 using ChatApp.Infrastructure.Repositories;
 using ChatApp.Infrastructure.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using ChatApp.Application.Service.Interfaces;
+using ChatApp.Application.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,7 @@ builder.Services.AddMediatR(configuration => {
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient<IPasswordService, PasswordService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
