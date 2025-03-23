@@ -1,6 +1,6 @@
-﻿using ChatApp.Domain.Models;
+﻿namespace ChatApp.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-namespace ChatApp.Infrastructure.Context;
+using ChatApp.Infrastructure.Models;
 
 public class ChatDbContext : DbContext
 {

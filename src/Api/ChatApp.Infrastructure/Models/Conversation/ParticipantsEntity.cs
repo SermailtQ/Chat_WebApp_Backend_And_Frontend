@@ -1,5 +1,4 @@
-﻿namespace ChatApp.Domain.Models;
-
+﻿namespace ChatApp.Infrastructure.Models;
 public class ParticipantsEntity
 {
     public required Guid ConversationId { get; set; }

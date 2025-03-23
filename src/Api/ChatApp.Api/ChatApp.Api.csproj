@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ChatApp.Application\ChatApp.Application.csproj" />
-    <ProjectReference Include="..\ChatApp.Domain\ChatApp.Domain.csproj" />
     <ProjectReference Include="..\ChatApp.Infrastructure\ChatApp.Infrastructure.csproj" />
   </ItemGroup>
 

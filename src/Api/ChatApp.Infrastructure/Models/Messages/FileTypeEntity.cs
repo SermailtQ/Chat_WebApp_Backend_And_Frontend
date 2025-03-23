@@ -1,5 +1,4 @@
-﻿namespace ChatApp.Domain.Models;
-
+﻿namespace ChatApp.Infrastructure.Models;
 public class FileTypeEntity : BaseEntity
 {
     public required string Name { get; set; }

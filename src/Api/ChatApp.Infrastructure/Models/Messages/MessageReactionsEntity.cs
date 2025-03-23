@@ -1,5 +1,4 @@
-﻿namespace ChatApp.Domain.Models;
-
+﻿namespace ChatApp.Infrastructure.Models;
 public class MessageReactionsEntity : BaseEntity
 {
     public required Guid MessageId { get; set; }

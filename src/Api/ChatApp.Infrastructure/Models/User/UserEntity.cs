@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Domain.Models;
+﻿namespace ChatApp.Infrastructure.Models;
 
 public class UserEntity : BaseEntity
 {
