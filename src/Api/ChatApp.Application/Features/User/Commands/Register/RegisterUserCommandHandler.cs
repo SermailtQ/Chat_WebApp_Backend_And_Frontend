@@ -1,8 +1,8 @@
 ﻿using ChatApp.Application.Service.Interfaces;
+using ChatApp.Infrastructure;
 using ChatApp.Infrastructure.Models;
 using ChatApp.Infrastructure.Repositories;
 using ChatApp.Infrastructure.Repositories.Interfaces;
-using ChatApp.Infrastructure.UnitOfWork;
 using MediatR;
 
 namespace ChatApp.Application.Features.User.Commands;

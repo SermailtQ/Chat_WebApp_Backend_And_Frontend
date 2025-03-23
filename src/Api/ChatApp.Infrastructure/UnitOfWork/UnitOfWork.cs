@@ -1,6 +1,6 @@
 ﻿using ChatApp.Infrastructure.Context;
 
-namespace ChatApp.Infrastructure.UnitOfWork;
+namespace ChatApp.Infrastructure;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly ChatDbContext _context;
