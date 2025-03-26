@@ -1,3 +1,4 @@
+using ChatApp.Api;
 using ChatApp.Application;
 using ChatApp.Infrastructure;
 
@@ -7,13 +8,9 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddApplicationServices();
+        builder.Services.AddApiServices();
+        builder.Services.AddApplicationServices(builder.Configuration);
         builder.Services.AddInfrastructureServices(builder.Configuration);
-        builder.Services.AddApplicationServices();
-
-        builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
 
@@ -25,6 +22,7 @@ internal class Program
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();

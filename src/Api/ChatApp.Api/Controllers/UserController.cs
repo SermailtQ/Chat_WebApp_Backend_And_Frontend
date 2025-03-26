@@ -2,6 +2,7 @@
 using ChatApp.Application.Features.User.Commands.Login;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security;
 
@@ -59,6 +60,21 @@ namespace ChatApp.Api.Controllers
             catch (SecurityException ex)
             {
                 return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
+            }
+        }
+
+        [Authorize]
+        [HttpGet("/users")]
+        public async Task<IActionResult> GetUsers()
+        {
+            try
+            {
+                // Test JWT token
+                return Ok("Hello");
             }
             catch (Exception ex)
             {

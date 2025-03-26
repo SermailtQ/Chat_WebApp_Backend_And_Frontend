@@ -8,7 +8,7 @@ using System.Security;
 namespace ChatApp.Application.Features.User.Commands.Login
 {
     public class LoginUserCommandHandler(IUserRepository _userRepository, IValidator<LoginUserDto> _validator, 
-        IPasswordService _passwordService, IUnitOfWork _unitOfWork)
+        IPasswordService _passwordService, IUnitOfWork _unitOfWork, ITokenService _tokenService)
         : IRequestHandler<LoginUserCommand, string>
     {
         public async Task<string> Handle(LoginUserCommand request, CancellationToken cancellationToken)
@@ -34,9 +34,7 @@ namespace ChatApp.Application.Features.User.Commands.Login
 
             await _unitOfWork.SaveChangesAsync();
 
-            // TODO: generate JWT token an return it
-
-            return "TOKEN";
+            return _tokenService.CreateToken(entityDb) ?? throw new ArgumentNullException("Couldn't create token");
         }
     }
 }
